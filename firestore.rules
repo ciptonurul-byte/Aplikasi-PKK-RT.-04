@@ -1,0 +1,64 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper function for document ID length
+    function isValidDocId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    // Profil PKK RT
+    match /pkk_profil/{docId} {
+      allow read, write: if isValidDocId(docId);
+    }
+
+    // Buku I: Anggota TP PKK
+    match /pkk_anggota/{docId} {
+      allow read, write: if isValidDocId(docId);
+    }
+
+    // Buku Dasawisma: Data Keluarga & Anggota Keluarga
+    match /pkk_keluarga/{docId} {
+      allow read, write: if isValidDocId(docId);
+    }
+
+    // Buku II: Kegiatan PKK
+    match /pkk_kegiatan/{docId} {
+      allow read, write: if isValidDocId(docId);
+    }
+
+    // Data Tanaman TOGA
+    match /pkk_toga/{docId} {
+      allow read, write: if isValidDocId(docId);
+    }
+
+    // Buku III: Kas Umum
+    match /pkk_transaksi/{docId} {
+      allow read, write: if isValidDocId(docId);
+    }
+
+    // Rekap Iuran Anggota
+    match /pkk_iuran/{docId} {
+      allow read, write: if isValidDocId(docId);
+    }
+
+    // Buku Surat Dinas PKK
+    match /pkk_surat/{docId} {
+      allow read, write: if isValidDocId(docId);
+    }
+
+    // Metadata Sinkronisasi Cloud
+    match /pkk_sync_meta/{docId} {
+      allow read, write: if isValidDocId(docId);
+    }
+
+    // Test connection doc
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+
+    // Default deny for unhandled paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

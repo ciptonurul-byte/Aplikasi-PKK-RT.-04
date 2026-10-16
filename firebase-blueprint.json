@@ -1,0 +1,172 @@
+{
+  "entities": {
+    "ProfilPKK": {
+      "title": "ProfilPKK",
+      "description": "Profil organisasi TP PKK tingkat RT/RW dan nominal iuran",
+      "type": "object",
+      "properties": {
+        "namaRT": { "type": "string" },
+        "namaRW": { "type": "string" },
+        "namaKelurahan": { "type": "string" },
+        "namaKecamatan": { "type": "string" },
+        "namaKota": { "type": "string" },
+        "provinsi": { "type": "string" },
+        "alamatSekretariat": { "type": "string" },
+        "namaKetua": { "type": "string" },
+        "namaSekretaris": { "type": "string" },
+        "namaBendahara": { "type": "string" },
+        "iuranBulananNominal": { "type": "number" },
+        "tahunKepengurusan": { "type": "string" }
+      },
+      "required": ["namaRT", "namaRW"]
+    },
+    "AnggotaPKK": {
+      "title": "AnggotaPKK",
+      "description": "Data anggota dan kader TP PKK",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nik": { "type": "string" },
+        "nama": { "type": "string" },
+        "noHp": { "type": "string" },
+        "alamat": { "type": "string" },
+        "rt": { "type": "string" },
+        "rw": { "type": "string" },
+        "jabatan": { "type": "string" },
+        "pokja": { "type": "string" },
+        "status": { "type": "string" },
+        "tanggalBergabung": { "type": "string" }
+      },
+      "required": ["id", "nama", "jabatan", "pokja"]
+    },
+    "KeluargaDasawisma": {
+      "title": "KeluargaDasawisma",
+      "description": "Catatan data keluarga dan anggota keluarga Dasawisma",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "noKk": { "type": "string" },
+        "namaKepalaKeluarga": { "type": "string" },
+        "namaIbu": { "type": "string" },
+        "noHpIbu": { "type": "string" },
+        "alamat": { "type": "string" },
+        "dasawisma": { "type": "string" },
+        "jumlahAnggotaKeluarga": { "type": "number" },
+        "jumlahLakiLaki": { "type": "number" },
+        "jumlahPerempuan": { "type": "number" },
+        "jumlahBalita": { "type": "number" },
+        "jumlahIbuHamil": { "type": "number" },
+        "jumlahLansia": { "type": "number" },
+        "statusPUS": { "type": "boolean" },
+        "statusWUS": { "type": "boolean" }
+      },
+      "required": ["id", "noKk", "namaKepalaKeluarga", "dasawisma"]
+    },
+    "KegiatanPKK": {
+      "title": "KegiatanPKK",
+      "description": "Catatan kegiatan dan program kerja TP PKK",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "namaKegiatan": { "type": "string" },
+        "pokja": { "type": "string" },
+        "tanggal": { "type": "string" },
+        "tempat": { "type": "string" },
+        "uraian": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "namaKegiatan", "pokja", "tanggal"]
+    },
+    "TanamanToga": {
+      "title": "TanamanToga",
+      "description": "Data tanaman obat keluarga dan pekarangan",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "namaTanaman": { "type": "string" },
+        "kategori": { "type": "string" },
+        "jumlah": { "type": "number" },
+        "lokasiDasawisma": { "type": "string" }
+      },
+      "required": ["id", "namaTanaman", "kategori"]
+    },
+    "TransaksiKas": {
+      "title": "TransaksiKas",
+      "description": "Buku Kas Umum pemasukan dan pengeluaran",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tanggal": { "type": "string" },
+        "jenis": { "type": "string" },
+        "kategori": { "type": "string" },
+        "jumlah": { "type": "number" },
+        "keterangan": { "type": "string" },
+        "penanggungJawab": { "type": "string" }
+      },
+      "required": ["id", "tanggal", "jenis", "kategori", "jumlah"]
+    },
+    "RekapIuranAnggota": {
+      "title": "RekapIuranAnggota",
+      "description": "Catatan iuran bulanan anggota PKK dan warga Dasawisma",
+      "type": "object",
+      "properties": {
+        "anggotaId": { "type": "string" },
+        "namaAnggota": { "type": "string" },
+        "jabatan": { "type": "string" },
+        "noHp": { "type": "string" },
+        "dasawisma": { "type": "string" },
+        "tahun": { "type": "number" }
+      },
+      "required": ["anggotaId", "namaAnggota"]
+    },
+    "SuratDinasPKK": {
+      "title": "SuratDinasPKK",
+      "description": "Agenda surat dinas masuk dan keluar",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "jenisSurat": { "type": "string" },
+        "nomorSurat": { "type": "string" },
+        "tanggalSurat": { "type": "string" },
+        "perihal": { "type": "string" },
+        "pengirim": { "type": "string" },
+        "tujuan": { "type": "string" }
+      },
+      "required": ["id", "jenisSurat", "nomorSurat", "perihal"]
+    }
+  },
+  "firestore": {
+    "/pkk_profil/{rtId}": {
+      "schema": "ProfilPKK",
+      "description": "Menyimpan profil TP PKK RT, struktur kepengurusan, dan pengaturan nominal iuran bulanan"
+    },
+    "/pkk_anggota/{anggotaId}": {
+      "schema": "AnggotaPKK",
+      "description": "Buku I: Daftar Anggota TP PKK dan Kader"
+    },
+    "/pkk_keluarga/{keluargaId}": {
+      "schema": "KeluargaDasawisma",
+      "description": "Buku Dasawisma: Data Catatan Keluarga dan Anggota Keluarga"
+    },
+    "/pkk_kegiatan/{kegiatanId}": {
+      "schema": "KegiatanPKK",
+      "description": "Buku II: Daftar Kegiatan TP PKK RT"
+    },
+    "/pkk_toga/{togaId}": {
+      "schema": "TanamanToga",
+      "description": "Pekarangan HATINYA PKK dan Tanaman Obat Keluarga"
+    },
+    "/pkk_transaksi/{transaksiId}": {
+      "schema": "TransaksiKas",
+      "description": "Buku III: Buku Kas Umum Keuangan PKK"
+    },
+    "/pkk_iuran/{anggotaId}": {
+      "schema": "RekapIuranAnggota",
+      "description": "Buku Iuran Bulanan Warga dan Anggota PKK"
+    },
+    "/pkk_surat/{suratId}": {
+      "schema": "SuratDinasPKK",
+      "description": "Buku Agenda Surat Masuk dan Surat Keluar Dinas PKK"
+    }
+  }
+}

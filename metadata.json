@@ -1,0 +1,6 @@
+{
+  "name": "Aplikasi PKK",
+  "description": "Aplikasi Sistem Informasi Manajemen Kegiatan PKK RT & Dasawisma (e-PKK) dengan Buku Administrasi PKK, Data Keluarga, TOGA, Iuran Kas, Generator Surat AI, dan Menu Khusus Laporan PKK Lengkap (PDF, Excel, Word)",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
